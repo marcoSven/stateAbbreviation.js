@@ -65,32 +65,80 @@ var stateAbbreviation = function() {
       ['WI','Wisconsin'],
       ['WY','Wyoming']
     ];
+  
+  try{
 
-  Array.prototype.toLowerCase = function() {
+    Object.defineProperty(
 
-    return this.map( function( t ) {
+        Array.prototype, "toLowerCase", {
+          enumerable: false,
+          value: function() {
 
-        return t.toLowerCase();
+                      return this.map( function( t ) {
 
-    });
+                        return t.toLowerCase();
 
-  };
+                      })
 
-  Array.prototype.toUpperCase = function() {
+                  }
+        }
 
-    return this.map( function( t ) {
+    );
 
-      if ( t.toUpperCase ) {
+    Object.defineProperty(
 
-        return t.toUpperCase();
+        Array.prototype, "toUpperCase", {
+          enumerable: false,
+          value: function() {
 
-      }
+                      return this.map( function( t ) {
 
-      return t;
+                          if ( t.toUpperCase ) {
 
-    });
+                            return t.toUpperCase();
 
-  };
+                          }
+
+                          return t;
+
+                      })
+
+                  }
+        }
+
+    );
+    
+  }catch(e){};
+  
+  if (!Array.prototype.toLowerCase) {
+    
+      Array.prototype.toLowerCase = function() {
+
+        return this.map( function( t ) {
+
+            return t.toLowerCase();
+
+        });
+
+      };
+
+      Array.prototype.toUpperCase = function() {
+
+        return this.map( function( t ) {
+
+          if ( t.toUpperCase ) {
+
+            return t.toUpperCase();
+
+          }
+
+          return t;
+
+        });
+
+      };
+  }
+    
 
   this.caseTransform = function ( caseTo ) {
 
