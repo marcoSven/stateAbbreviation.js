@@ -5,7 +5,7 @@
   https://marcoSven.com/
 */
 
-var stateAbbreviation = function() {
+const stateAbbreviation = function() {
 
   var self = this;
 
